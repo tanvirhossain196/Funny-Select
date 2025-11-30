@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>জীবনে কি চাও?</title>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+     <style>
+          * {
+               margin: 0;
+               padding: 0;
+               box-sizing: border-box;
+          }
+
+          body {
+               font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+               background: linear-gradient(135deg, #e0c3fc 0%, #fce4ec 50%, #bbdefb 100%);
+               min-height: 100vh;
+               padding: 20px;
+          }
+
+          .container {
+               max-width: 500px;
+               margin: 0 auto;
+          }
+
+          .header {
+               text-align: center;
+               margin-bottom: 30px;
+          }
+
+          .header h1 {
+               color: #7b1fa2;
+               font-size: 2.5rem;
+               font-weight: bold;
+               margin-bottom: 10px;
+          }
+
+          .header p {
+               color: #666;
+               font-weight: 600;
+          }
+
+          .warning-text {
+               color: #d32f2f;
+               font-size: 0.9rem;
+               margin-top: 10px;
+          }
+
+          .card {
+               background: white;
+               border-radius: 20px;
+               box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+               padding: 30px;
+               margin-bottom: 25px;
+          }
+
+          .name-label {
+               font-size: 1.1rem;
+               font-weight: 600;
+               color: #333;
+               margin-bottom: 15px;
+          }
+
+          .name-input-group {
+               display: flex;
+               gap: 10px;
+          }
+
+          .name-input {
+               flex: 1;
+               padding: 12px 16px;
+               border: 2px solid #ce93d8;
+               border-radius: 10px;
+               font-size: 1.1rem;
+               transition: all 0.3s;
+          }
+
+          .name-input:focus {
+               outline: none;
+               border-color: #7b1fa2;
+          }
+
+          .name-input:disabled {
+               background: #f5f5f5;
+               border-color: #ccc;
+               cursor: not-allowed;
+          }
+
+          .submit-btn {
+               padding: 12px 25px;
+               background: #7b1fa2;
+               color: white;
+               border: none;
+               border-radius: 10px;
+               font-size: 1.2rem;
+               font-weight: bold;
+               cursor: pointer;
+               transition: all 0.3s;
+          }
+
+          .submit-btn:hover:not(:disabled) {
+               background: #6a1b9a;
+               transform: scale(0.95);
+          }
+
+          .submit-btn:disabled {
+               background: #ccc;
+               cursor: not-allowed;
+          }
+
+          .success-message {
+               margin-top: 15px;
+               text-align: center;
+               color: #2e7d32;
+               font-weight: 600;
+          }
+
+          .toggle-option {
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               padding: 20px;
+               border-radius: 15px;
+               margin-bottom: 20px;
+               transition: all 0.3s;
+               cursor: pointer;
+          }
+
+          .toggle-option:hover:not(.disabled) {
+               box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          }
+
+          .toggle-option.disabled {
+               opacity: 0.5;
+               cursor: not-allowed;
+          }
+
+          .career {
+               background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+          }
+
+          .marriage {
+               background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+          }
+
+          .peace {
+               background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+          }
+
+          .option-content {
+               display: flex;
+               align-items: center;
+               gap: 15px;
+          }
+
+          .option-emoji {
+               font-size: 2rem;
+          }
+
+          .option-text {
+               font-size: 1.5rem;
+               font-weight: bold;
+          }
+
+          .career .option-text {
+               color: #1565c0;
+          }
+
+          .marriage .option-text {
+               color: #c2185b;
+          }
+
+          .peace .option-text {
+               color: #2e7d32;
+          }
+
+          .toggle-switch {
+               position: relative;
+               width: 60px;
+               height: 30px;
+               background: #ccc;
+               border-radius: 15px;
+               cursor: pointer;
+               transition: all 0.3s;
+          }
+
+          .toggle-switch.active {
+               background: #4caf50;
+          }
+
+          .toggle-slider {
+               position: absolute;
+               top: 3px;
+               left: 3px;
+               width: 24px;
+               height: 24px;
+               background: white;
+               border-radius: 50%;
+               box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+               transition: all 0.3s;
+          }
+
+          .toggle-switch.active .toggle-slider {
+               transform: translateX(30px);
+          }
+
+          .message-box {
+               background: linear-gradient(135deg, #ffcdd2 0%, #ffab91 100%);
+               border: 2px solid #f44336;
+               border-radius: 20px;
+               padding: 25px;
+               margin-top: 25px;
+               box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+               animation: bounce 0.5s;
+          }
+
+          .message-text {
+               text-align: center;
+               font-size: 1.1rem;
+               font-weight: bold;
+               color: #c62828;
+          }
+
+          .warning-box {
+               background: #ffcdd2;
+               border: 2px solid #f44336;
+               border-radius: 15px;
+               padding: 20px;
+               margin-bottom: 20px;
+               animation: bounce 0.5s;
+          }
+
+          .warning-box p {
+               text-align: center;
+               font-size: 1.1rem;
+               font-weight: bold;
+               color: #c62828;
+               margin: 0;
+          }
+
+          .selection-box {
+               background: linear-gradient(135deg, #e1bee7 0%, #bbdefb 100%);
+               border-radius: 20px;
+               padding: 25px;
+               margin-top: 25px;
+               box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+          }
+
+          .selection-text {
+               text-align: center;
+               font-size: 1.1rem;
+               font-weight: 600;
+               color: #4a148c;
+          }
+
+          .footer {
+               margin-top: 40px;
+               text-align: center;
+               color: #666;
+          }
+
+          .footer p {
+               margin: 8px 0;
+          }
+
+          .footer .highlight {
+               font-weight: bold;
+          }
+
+          @keyframes bounce {
+
+               0%,
+               100% {
+                    transform: translateY(0);
+               }
+
+               50% {
+                    transform: translateY(-10px);
+               }
+          }
+
+          @media (max-width: 576px) {
+               .header h1 {
+                    font-size: 2rem;
+               }
+
+               .option-text {
+                    font-size: 1.3rem;
+               }
+
+               .card {
+                    padding: 20px;
+               }
+          }
+     </style>
+</head>
+
+<body>
+     <div class="container">
+          <!-- Header -->
+          <div class="header">
+               <h1>জীবনে কি চাও? 🤔</h1>
+               <p>তিনটির মধ্যে দুইটা বেছে নাও!</p>
+               <p class="warning-text">⚠️ সাবধান: তিনটা একসাথে চাইলেই বিপদ! 😈</p>
+          </div>
+
+          <!-- Name Input Card -->
+          <div class="card">
+               <div class="name-label">✍️ প্রথমে তোমার নাম লিখো:</div>
+               <div class="name-input-group">
+                    <input type="text" id="nameInput" class="name-input" placeholder="এখানে নাম লিখুন...">
+                    <button id="submitBtn" class="submit-btn" disabled>✓</button>
+                    <button id="refreshBtn" class="submit-btn" style="display: none; background: #f44336;">🔄</button>
+               </div>
+               <div id="successMessage" class="success-message" style="display: none;"></div>
+          </div>
+
+          <!-- Warning Message -->
+          <div id="warningBox" class="warning-box" style="display: none;">
+               <p id="warningText"></p>
+          </div>
+
+          <!-- Toggle Options Card -->
+          <div class="card">
+               <!-- Career Toggle -->
+               <div class="toggle-option career disabled" id="careerOption">
+                    <div class="option-content">
+                         <span class="option-emoji">💼</span>
+                         <span class="option-text">ক্যারিয়ার</span>
+                    </div>
+                    <div class="toggle-switch" id="careerToggle">
+                         <div class="toggle-slider"></div>
+                    </div>
+               </div>
+
+               <!-- Marriage Toggle -->
+               <div class="toggle-option marriage disabled" id="marriageOption">
+                    <div class="option-content">
+                         <span class="option-emoji">💑</span>
+                         <span class="option-text">বিয়ে</span>
+                    </div>
+                    <div class="toggle-switch" id="marriageToggle">
+                         <div class="toggle-slider"></div>
+                    </div>
+               </div>
+
+               <!-- Peace Toggle -->
+               <div class="toggle-option peace disabled" id="peaceOption">
+                    <div class="option-content">
+                         <span class="option-emoji">☮️</span>
+                         <span class="option-text">শান্তি</span>
+                    </div>
+                    <div class="toggle-switch" id="peaceToggle">
+                         <div class="toggle-slider"></div>
+                    </div>
+               </div>
+
+               <!-- Developer Credit -->
+               <div style="text-align: right; margin-top: 15px;">
+                    <p style="font-size: 0.75rem; color: #999; font-style: italic; margin: 0;">
+                         Developed by Tanvir
+                    </p>
+               </div>
+          </div>
+
+          <!-- Message Display -->
+          <div id="messageBox" class="message-box" style="display: none;">
+               <p class="message-text" id="messageText"></p>
+          </div>
+
+          <!-- Selection Display -->
+          <div id="selectionBox" class="selection-box" style="display: none;">
+               <p class="selection-text" id="selectionText"></p>
+          </div>
+
+          <!-- Footer -->
+          <div class="footer">
+               <p class="highlight">💡 মনে রাখো:</p>
+               <p>জীবনে সবকিছু একসাথে পাওয়া যায় না!</p>
+               <p>Balance করতে শিখো, নইলে সব হারিয়ে যাবে! 😄</p>
+               <p style="margin-top: 30px; font-size: 0.9rem; color: #7b1fa2;">
+                    ❤️ Developed by <strong>Tanvir</strong> ❤️
+               </p>
+          </div>
+     </div>
+
+     <script>
+          let userName = '';
+          let nameSubmitted = false;
+          let toggles = {
+               career: false,
+               marriage: false,
+               peace: false
+          };
+
+          const nameInput = document.getElementById('nameInput');
+          const submitBtn = document.getElementById('submitBtn');
+          const refreshBtn = document.getElementById('refreshBtn');
+          const successMessage = document.getElementById('successMessage');
+          const warningBox = document.getElementById('warningBox');
+          const warningText = document.getElementById('warningText');
+          const messageBox = document.getElementById('messageBox');
+          const messageText = document.getElementById('messageText');
+          const selectionBox = document.getElementById('selectionBox');
+          const selectionText = document.getElementById('selectionText');
+
+          // Enable submit button when name is entered
+          nameInput.addEventListener('input', function () {
+               submitBtn.disabled = this.value.trim() === '';
+          });
+
+          // Submit name on Enter key
+          nameInput.addEventListener('keypress', function (e) {
+               if (e.key === 'Enter' && this.value.trim() !== '') {
+                    handleNameSubmit();
+               }
+          });
+
+          // Submit button click
+          submitBtn.addEventListener('click', handleNameSubmit);
+
+          // Refresh button click
+          refreshBtn.addEventListener('click', function () {
+               nameInput.disabled = false;
+               nameInput.value = '';
+               nameSubmitted = false;
+               submitBtn.style.display = 'inline-block';
+               submitBtn.disabled = true;
+               refreshBtn.style.display = 'none';
+               successMessage.style.display = 'none';
+
+               // Reset toggles
+               toggles = { career: false, marriage: false, peace: false };
+               document.getElementById('careerToggle').classList.remove('active');
+               document.getElementById('marriageToggle').classList.remove('active');
+               document.getElementById('peaceToggle').classList.remove('active');
+
+               // Disable toggle options
+               document.getElementById('careerOption').classList.add('disabled');
+               document.getElementById('marriageOption').classList.add('disabled');
+               document.getElementById('peaceOption').classList.add('disabled');
+
+               // Hide messages
+               messageBox.style.display = 'none';
+               selectionBox.style.display = 'none';
+
+               if (messageInterval) {
+                    clearInterval(messageInterval);
+                    messageInterval = null;
+               }
+
+               nameInput.focus();
+          });
+
+          function handleNameSubmit() {
+               if (nameInput.value.trim()) {
+                    userName = nameInput.value.trim();
+                    nameSubmitted = true;
+                    nameInput.disabled = true;
+                    submitBtn.style.display = 'none';
+                    refreshBtn.style.display = 'inline-block';
+                    successMessage.textContent = `✅ স্বাগতম ${userName}! এবার বেছে নাও! 👇`;
+                    successMessage.style.display = 'block';
+
+                    // Enable toggles
+                    document.getElementById('careerOption').classList.remove('disabled');
+                    document.getElementById('marriageOption').classList.remove('disabled');
+                    document.getElementById('peaceOption').classList.remove('disabled');
+               }
+          }
+
+          function showWarning(msg) {
+               warningText.textContent = msg;
+               warningBox.style.display = 'block';
+               setTimeout(() => {
+                    warningBox.style.display = 'none';
+               }, 2000);
+          }
+
+          function handleToggleClick(type) {
+               if (!nameSubmitted) {
+                    showWarning('আরে বাবা! আগে তো নাম দাও! 😤');
+                    return;
+               }
+
+               toggles[type] = !toggles[type];
+               const toggleElement = document.getElementById(type + 'Toggle');
+
+               if (toggles[type]) {
+                    toggleElement.classList.add('active');
+               } else {
+                    toggleElement.classList.remove('active');
+               }
+
+               const activeCount = Object.values(toggles).filter(v => v).length;
+
+               // If trying to activate 3rd toggle, turn off the first activated one
+               if (activeCount === 3) {
+                    // Find which toggle to turn off (the first one that was activated)
+                    let firstActive = null;
+                    if (toggles.career && type !== 'career') firstActive = 'career';
+                    else if (toggles.marriage && type !== 'marriage') firstActive = 'marriage';
+                    else if (toggles.peace && type !== 'peace') firstActive = 'peace';
+
+                    if (firstActive) {
+                         // Show first set of messages
+                         let firstMessages = [];
+                         if (type === 'peace') {
+                              firstMessages = [
+                                   `${userName}, তুমি একসাথে তিনটা চাও? 😁🤡`,
+                                   `শান্তি তোমার জন্য না!`,
+                                   `ক্যারিয়ার আর বিয়ে নিয়ে ব্যস্ত থাকো! 💼💑`
+                              ];
+                         } else if (type === 'career') {
+                              firstMessages = [
+                                   `${userName} ভাই/আপু জান, ক্যারিয়ার করতে গেলে 💼`,
+                                   `বাকি দুইটা ভুলে যাও! 😅`,
+                                   `একসাথে সব পাওয়া যায় না! 🤷‍♂️`
+                              ];
+                         } else if (type === 'marriage') {
+                              firstMessages = [
+                                   `${userName}, বিয়ে করে ফেললে সব শেষ! 💑😂`,
+                                   `ক্যারিয়ার আর শান্তি বিদায় নেবে! 👋`,
+                                   `এটাই বাস্তবতা! 🤣`
+                              ];
+                         }
+
+                         let msgIndex = 0;
+                         messageText.textContent = firstMessages[msgIndex];
+                         messageBox.style.display = 'block';
+
+                         const firstMsgInterval = setInterval(() => {
+                              msgIndex++;
+                              if (msgIndex < firstMessages.length) {
+                                   messageText.textContent = firstMessages[msgIndex];
+                              } else {
+                                   clearInterval(firstMsgInterval);
+
+                                   // After first messages, turn off the toggle
+                                   setTimeout(() => {
+                                        toggles[firstActive] = false;
+                                        document.getElementById(firstActive + 'Toggle').classList.remove('active');
+
+                                        // Show second set of messages
+                                        const funnyMessages = [
+                                             `${userName} ভাই/আপু, তুমি কি সিরিয়াস? 😂`,
+                                             `তিনটা একসাথে কীভাবে সম্ভব! 🤔`,
+                                             `হায় ${userName}! পৃথিবীটা এতো সহজ হলে 🌍`,
+                                             `সবাই তো রাজা হয়ে যেতো! 🤡👑`,
+                                             `${userName}, তুমি বোধহয় স্বপ্ন দেখছো! 😴`,
+                                             `ঘুম থেকে উঠো! ⏰`,
+                                             `এই ${userName}, লোভে পাপ, পাপে মৃত্যু! 😆`,
+                                             `দুইটাই অনেক! ✌️`,
+                                             `${userName} বুবু, জীবন Netflix সিরিজ না 🎬`,
+                                             `যে সব হ্যাপি এন্ডিং! 😂`
+                                        ];
+
+                                        let funnyIndex = 0;
+                                        messageText.textContent = funnyMessages[funnyIndex];
+
+                                        const funnyMsgInterval = setInterval(() => {
+                                             funnyIndex++;
+                                             if (funnyIndex < funnyMessages.length) {
+                                                  messageText.textContent = funnyMessages[funnyIndex];
+                                             } else {
+                                                  clearInterval(funnyMsgInterval);
+                                                  setTimeout(() => {
+                                                       messageBox.style.display = 'none';
+                                                       updateSelectionMessage();
+                                                  }, 2000);
+                                             }
+                                        }, 2000);
+                                   }, 1000);
+                              }
+                         }, 2000);
+
+                         return; // Don't update selection message yet
+                    }
+               } else {
+                    messageBox.style.display = 'none';
+               }
+
+               updateSelectionMessage();
+          }
+
+          let messageInterval = null;
+
+          function updateSelectionMessage() {
+               if (!nameSubmitted) {
+                    selectionBox.style.display = 'none';
+                    if (messageInterval) {
+                         clearInterval(messageInterval);
+                         messageInterval = null;
+                    }
+                    return;
+               }
+
+               const selected = [];
+               if (toggles.career) selected.push('ক্যারিয়ার');
+               if (toggles.marriage) selected.push('বিয়ে');
+               if (toggles.peace) selected.push('শান্তি');
+
+               // Clear previous interval
+               if (messageInterval) {
+                    clearInterval(messageInterval);
+                    messageInterval = null;
+               }
+
+               let messages = [];
+
+               if (selected.length === 0) {
+                    messages = [
+                         `${userName}, কিছু তো সিলেক্ট করো! 🤔`,
+                         `${userName}, এভাবে বসে থাকলে তো কিছু হবে না! 😅`,
+                         `নাকি তুমি সন্ন্যাসী হতে চাও? 🧘‍♂️`,
+                         `${userName}, সিদ্ধান্ত নাও! Life waiting করছে! ⏰`
+                    ];
+               } else if (selected.length === 1) {
+                    if (toggles.career) {
+                         messages = [
+                              `${userName} শুধু ক্যারিয়ার? বাহ! 💼🚀`,
+                              `Elon Musk হওয়ার স্বপ্ন দেখছো নাকি? 😎`,
+                              `কিন্তু ${userName}, বাকি দুইটা ছাড়া পারবে? 🤔`,
+                              `শুধু কাজ আর কাজ? Boring! 😴`
+                         ];
+                    } else if (toggles.marriage) {
+                         messages = [
+                              `${userName} শুধু বিয়ে? রোমান্টিক মানুষ তো! 💕`,
+                              `কিন্তু টাকা কোথা থেকে আসবে? 💸😅`,
+                              `${userName}, love is not enough! 😂`,
+                              `বিয়ের খরচ কে দেবে? ভাবো! 🤑`
+                         ];
+                    } else if (toggles.peace) {
+                         messages = [
+                              `${userName} শুধু শান্তি চাও? 🧘‍♂️😇`,
+                              `তুমি কি বুদ্ধ হতে চাও? 🙏`,
+                              `হিমালয়ে চলে যাবে নাকি? 🏔️`,
+                              `${userName}, শান্তি পেতে হলে কাজ করতে হয়! 💪`
+                         ];
+                    }
+               } else if (selected.length === 2) {
+                    if (toggles.career && toggles.marriage) {
+                         messages = [
+                              `${userName}, ক্যারিয়ার আর বিয়ে? 💼💑`,
+                              `ভালো কম্বিনেশন! কিন্তু শান্তি তো নেই! 😂`,
+                              `Work-Life Balance কঠিন হবে! 😰`,
+                              `রাত ১২টায় অফিস, সকালে বউ এর ঝগড়া! 🤯`,
+                              `${userName}, তুমি পারবে তো? 💪😅`
+                         ];
+                    } else if (toggles.career && toggles.peace) {
+                         messages = [
+                              `${userName}, ক্যারিয়ার আর শান্তি? 💼☮️`,
+                              `Impossible Combination! 😅`,
+                              `Boss তোমাকে শান্তিতে থাকতে দেবে না! 😤`,
+                              `Deadline আর Peace? Dream on! 😴`,
+                              `${userName}, একটা বেছে নাও! 🤔`
+                         ];
+                    } else if (toggles.marriage && toggles.peace) {
+                         messages = [
+                              `${userName}, বিয়ে আর শান্তি? 💑☮️ হাহাহা! 😂`,
+                              `বউ/স্বামী শুনলে মারবে! 😱`,
+                              `বিয়ের পর শান্তি থাকে না! 🤣`,
+                              `${userName}, তুমি কোন দুনিয়ায় আছো? 🌍😅`,
+                              `এটা সবচেয়ে বড় Myth! 🙈`
+                         ];
+                    }
+               }
+
+               if (messageBox.style.display === 'none') {
+                    let currentIndex = 0;
+                    selectionText.textContent = messages[currentIndex];
+                    selectionBox.style.display = 'block';
+
+                    if (messages.length > 1) {
+                         messageInterval = setInterval(() => {
+                              currentIndex = (currentIndex + 1) % messages.length;
+                              selectionText.textContent = messages[currentIndex];
+                         }, 3500); // Change message every 3.5 seconds
+                    }
+               }
+          }
+
+          // Add click events to toggle options
+          document.getElementById('careerOption').addEventListener('click', () => handleToggleClick('career'));
+          document.getElementById('marriageOption').addEventListener('click', () => handleToggleClick('marriage'));
+          document.getElementById('peaceOption').addEventListener('click', () => handleToggleClick('peace'));
+     </script>
+</body>
+
+</html>
